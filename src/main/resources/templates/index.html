@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas Populares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .recipe {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .recipe h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .recipe p {
+            margin: 5px 0;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Recetas Populares</h1>
+
+<div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar recetas por título..." onkeyup="filterRecipes()">
+</div>
+
+<div id="recipeList">
+    <div class="recipe" data-title="Tacos de Carnitas">
+        <h2>Tacos de Carnitas</h2>
+        <p><strong>Ingredientes:</strong> Carne de cerdo, tortillas, cebolla, cilantro, salsa.</p>
+        <p><strong>Calificación:</strong> ★★★★☆</p>
+    </div>
+    <div class="recipe" data-title="Ensalada César">
+        <h2>Ensalada César</h2>
+        <p><strong>Ingredientes:</strong> Lechuga, pechuga de pollo, queso parmesano, crutones, aderezo César.</p>
+        <p><strong>Calificación:</strong> ★★★☆☆</p>
+    </div>
+    <div class="recipe" data-title="Paella Valenciana">
+        <h2>Paella Valenciana</h2>
+        <p><strong>Ingredientes:</strong> Arroz, pollo, conejo, judías verdes, garrofón, tomate, azafrán.</p>
+        <p><strong>Calificación:</strong> ★★★★★</p>
+    </div>
+    <div class="recipe" data-title="Pizza">
+        <h2>Pizza Margherita</h2>
+        <p><strong>Ingredientes:</strong> Masa de pizza, tomate, mozzarella, albahaca, aceite de oliva.</p>
+        <p><strong>Calificación:</strong> ★★★★☆</p>
+    </div>
+
+</div>
+
+<script>
+    function filterRecipes() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const recipes = document.querySelectorAll('#recipeList .recipe');
+
+        recipes.forEach(recipe => {
+            const title = recipe.getAttribute('data-title').toLowerCase();
+            if (title.includes(input)) {
+                recipe.style.display = '';
+            } else {
+                recipe.style.display = 'none';
+            }
+        });
+    }
+</script>
+</body>
+</html>
